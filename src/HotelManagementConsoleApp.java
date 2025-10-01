@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class HotelManagementConsoleApp {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ClearScreen cleaner = new ClearScreen();
         int choice;
