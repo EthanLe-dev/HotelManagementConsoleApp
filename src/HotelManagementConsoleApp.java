@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 
 public class HotelManagementConsoleApp {
@@ -10,19 +9,18 @@ public class HotelManagementConsoleApp {
         while (true) {
             cleaner.clearScreen();
             System.out.println("------Ứng dụng quản lý khách sạn Nhóm 11------");
-            System.out.println("1.Quản lý phòng");       // thêm,xóa,sửa,tìm số phòng, loại phòng
-            System.out.println("2.Quản lý đặt phòng");   // thêm,xóa,sửa,tìm lịch đặt của khách
-            System.out.println("3.Quản lý trả phòng và thanh toán");   // thêm,xóa,sửa,tìm lịch đặt của khách
-            System.out.println("4.Quản lý khách hàng");  // thêm,xóa,sửa,tìm khách hàng và cấp vip
-            System.out.println("5.Quản lý dịch vụ");     // thêm,xóa,sửa dịch vụ đồ ăn, thức uống
-            System.out.println("6.Quản lý ưu đãi");      // thêm,xóa,sửa các chương trình ưu đãi
-            System.out.println("7.Quản lý nhân viên");   // thêm,xóa,sửa,tìm lễ tân, dọn vs, nhân viên bếp,...
-            System.out.println("8.Dữ liệu khách sạn");   // xem doanh thu, phòng trống/đã đặt, nhân viên
-            System.out.println("0.Thoát");
+            System.out.println("1.Quản lý phòng");          // Quý
+            System.out.println("2.Quản lý nhân viên");      // Quý
+            System.out.println("3.Quản lý khách hàng");     // Phú
+            System.out.println("4.Quản lý đặt phòng");      // Phú
+            System.out.println("5.Quản lý hóa đơn");        // Thịnh
+            System.out.println("6.Quản lý dịch vụ");        // Thái
+            System.out.println("7.Quản lý ưu đãi");         // Thái
+            System.out.println("0.Thoát chương trình");
 
             try {
                 System.out.print("Nhập lựa chọn: ");
-                choice = Integer.parseInt(sc.nextLine());
+                choice = Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Vui lòng nhập số từ 0-8");
                 continue;
@@ -31,27 +29,73 @@ public class HotelManagementConsoleApp {
             switch (choice) {
                 case 1:
                     System.out.println("----Chức năng quản lý phòng----");
+                    /*
+                    Xem tất cả các phòng
+                    Sửa giá theo ID
+                    Xóa phòng theo ID
+                    Xem phòng theo cấp Standard / Suite
+                    Thêm phòng
+                     */
                     break;
                 case 2:
-                    System.out.println("----Chức năng quản lý đặt phòng----");
+                    System.out.println("----Chức năng quản lý nhân viên----");
+                    /*
+                    Xem tất cả nhân viên
+                    Xem nhân viên theo chức vụ (Receptionist,Chef,Cleaner)
+                    Thêm nhân viên mới
+                    Sửa thông tin nhân viên
+                    Xóa nhân viên
+                     */
                     break;
                 case 3:
-                    System.out.println("----Chức năng quản lý trả phòng và thanh toán----");
+                    System.out.println("----Chức năng quản lý khách hàng----");
+                    /*
+                    Xem tất cả khách hàng
+                    Xem khách hàng theo cấp Member
+                    Thêm khách hàng mới
+                    Sửa thông tin khách
+                    Xóa khách hàng theo SĐT
+                     */
                     break;
                 case 4:
-                    System.out.println("----Chức năng quản lý khách hàng----");
+                    System.out.println("----Chức năng quản lý đặt phòng----");
+                    /*
+                    Xem tất cả phòng đã đặt/chưa đặt
+                    Tạo 1 lịch đặt
+                    Sửa 1 lịch đặt
+                    Xóa 1 lịch đặt
+                    Xem lịch đặt theo tên khách
+                     */
                     break;
                 case 5:
-                    System.out.println("----Chức năng quản lý dịch vụ----");
+                    System.out.println("----Chức năng quản lý hóa đơn----");
+                    /*
+                    Xem tất cả lịch đặt từ booking
+                    Xử lý thanh toán -> ra hóa đơn
+                    Xem tất cả hóa đơn đã thanh toán
+                    Tìm hóa đơn theo tên khách
+                    Xem tổng doanh thu/in ra file HotelData
+                     */
                     break;
                 case 6:
-                    System.out.println("----Chức năng quản lý ưu đãi----");
+                    System.out.println("----Chức năng quản lý dịch vụ----");
+                    /*
+                    Xem tất cả dịch vụ hiện có
+                    Thêm dịch vụ
+                    Sửa dịch vụ
+                    Xóa dịch vụ
+                    Tìm dịch vụ theo tên
+                     */
                     break;
                 case 7:
-                    System.out.println("----Chức năng quản lý nhân viên----");
-                    break;
-                case 8:
-                    System.out.println("----Chức năng quản lý dữ liệu khách sạn----");
+                    System.out.println("----Chức năng quản lý ưu đãi----");
+                    /*
+                    Xem tất cả chương trình KM hiện có
+                    Thêm CTKM
+                    Sửa CTKM
+                    Xóa CTKM
+                    Tìm CTKM theo tên
+                     */
                     break;
                 case 0:
                     System.out.println("Thoát chương trình...");

@@ -1,0 +1,17 @@
+ID Phòng | Loại phòng | Giá | đã đặt hay chưa
+101,Standard,250000,false
+102,Standard,200000,true
+103,Standard,400000,false
+104,Standard,500000,true
+201,Standard,300000,true
+202,Standard,400000,true
+203,Standard,300000,true
+204,Standard,500000,false
+301,Suite,550000,true
+302,Suite,800000,true
+303,Suite,675000,true
+304,Suite,580000,true
+401,Suite,700000,true
+402,Suite,590000,true
+403,Suite,750000,false
+404,Suite,600000,true
