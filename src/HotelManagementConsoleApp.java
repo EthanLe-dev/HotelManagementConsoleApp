@@ -28,14 +28,10 @@ public class HotelManagementConsoleApp {
 
             switch (choice) {
                 case 1:
-                    System.out.println("----Chức năng quản lý phòng----");
-                    /*
-                    Xem tất cả các phòng
-                    Sửa giá theo ID
-                    Xóa phòng theo ID
-                    Xem phòng theo cấp Standard / Suite
-                    Thêm phòng
-                     */
+                    RoomManager rm = new RoomManager(sc, cleaner);
+                    rm.readFromFile();
+                    rm.showMenu();
+                    rm.saveToFile();
                     break;
                 case 2:
                     System.out.println("----Chức năng quản lý nhân viên----");
