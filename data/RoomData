@@ -1,4 +1,4 @@
-ID Phòng | Loại phòng | Giá | đã đặt hay chưa
+ID Phòng | Loại phòng | Giá | Đã đặt hay chưa
 101,Standard,250000,false
 102,Standard,200000,true
 103,Standard,400000,false
