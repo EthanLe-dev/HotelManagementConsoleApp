@@ -2,13 +2,27 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Lớp đại diện cho một dịch vụ
-class Service {
+public class ServiceManagement {
+    // Thuộc tính của một dịch vụ
     private String id;
     private String name;
     private double price;
     
-    public Service(String id, String name, double price) {
+    // Tên file dữ liệu
+    private static final String FILE_NAME = "data/Service";
+    
+    // Constructor mặc định
+    public ServiceManagement() {
+        // Kiểm tra file có tồn tại không
+        File file = new File(FILE_NAME);
+        if (!file.exists()) {
+            System.out.println("Chú ý: File " + FILE_NAME + " chưa tồn tại!");
+            System.out.println("Vui lòng tạo file và thêm dữ liệu theo định dạng: ID,Tên,Giá");
+        }
+    }
+    
+    // Constructor với tham số (dùng khi đọc từ file)
+    public ServiceManagement(String id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -28,24 +42,10 @@ class Service {
     public String toString() {
         return String.format("%-5s %-15s %,.0f VND", id, name, price);
     }
-}
-
-// Lớp quản lý dịch vụ
-class Service_management {
-    private static final String FILE_NAME = "service.txt";
-    
-    public Service_management() {
-        // Kiểm tra file có tồn tại không
-        File file = new File(FILE_NAME);
-        if (!file.exists()) {
-            System.out.println("Chú ý: File " + FILE_NAME + " chưa tồn tại!");
-            System.out.println("Vui lòng tạo file và thêm dữ liệu theo định dạng: ID,Tên,Giá");
-        }
-    }
     
     // Đọc tất cả dịch vụ từ file
-    private ArrayList<Service> readFromFile() {
-        ArrayList<Service> services = new ArrayList<>();
+    private ArrayList<ServiceManagement> readFromFile() {
+        ArrayList<ServiceManagement> services = new ArrayList<>();
         
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
             String line;
@@ -55,7 +55,7 @@ class Service_management {
                     String id = parts[0].trim();
                     String name = parts[1].trim();
                     double price = Double.parseDouble(parts[2].trim());
-                    services.add(new Service(id, name, price));
+                    services.add(new ServiceManagement(id, name, price));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -68,9 +68,9 @@ class Service_management {
     }
     
     // Ghi tất cả dịch vụ vào file
-    private void writeToFile(ArrayList<Service> services) {
+    private void writeToFile(ArrayList<ServiceManagement> services) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_NAME))) {
-            for (Service s : services) {
+            for (ServiceManagement s : services) {
                 writer.println(s.getId() + "," + s.getName() + "," + s.getPrice());
             }
         } catch (IOException e) {
@@ -80,7 +80,7 @@ class Service_management {
     
     // 1. Xem tất cả dịch vụ
     public void viewAllServices() {
-        ArrayList<Service> services = readFromFile();
+        ArrayList<ServiceManagement> services = readFromFile();
         
         if (services.isEmpty()) {
             System.out.println("Không có dịch vụ nào!");
@@ -90,7 +90,7 @@ class Service_management {
         System.out.println("\n===== DANH SÁCH DỊCH VỤ =====");
         System.out.println("ID    Tên             Giá");
         System.out.println("----------------------------------");
-        for (Service s : services) {
+        for (ServiceManagement s : services) {
             System.out.println(s);
         }
         System.out.println("----------------------------------");
@@ -98,10 +98,10 @@ class Service_management {
     
     // 2. Thêm dịch vụ
     public void addService(String id, String name, double price) {
-        ArrayList<Service> services = readFromFile();
+        ArrayList<ServiceManagement> services = readFromFile();
         
         // Kiểm tra ID đã tồn tại chưa
-        for (Service s : services) {
+        for (ServiceManagement s : services) {
             if (s.getId().equals(id)) {
                 System.out.println("ID đã tồn tại! Vui lòng chọn ID khác.");
                 return;
@@ -109,7 +109,7 @@ class Service_management {
         }
         
         // Thêm dịch vụ mới
-        Service newService = new Service(id, name, price);
+        ServiceManagement newService = new ServiceManagement(id, name, price);
         services.add(newService);
         
         // Ghi lại vào file
@@ -119,10 +119,10 @@ class Service_management {
     
     // 3. Sửa dịch vụ
     public void updateService(String id, String newName, double newPrice) {
-        ArrayList<Service> services = readFromFile();
+        ArrayList<ServiceManagement> services = readFromFile();
         boolean found = false;
         
-        for (Service s : services) {
+        for (ServiceManagement s : services) {
             if (s.getId().equals(id)) {
                 s.setName(newName);
                 s.setPrice(newPrice);
@@ -142,7 +142,7 @@ class Service_management {
     
     // 4. Xóa dịch vụ
     public void deleteService(String id) {
-        ArrayList<Service> services = readFromFile();
+        ArrayList<ServiceManagement> services = readFromFile();
         boolean found = false;
         
         for (int i = 0; i < services.size(); i++) {
@@ -164,10 +164,10 @@ class Service_management {
     
     // 5. Tìm dịch vụ theo tên
     public void searchByName(String keyword) {
-        ArrayList<Service> services = readFromFile();
-        ArrayList<Service> results = new ArrayList<>();
+        ArrayList<ServiceManagement> services = readFromFile();
+        ArrayList<ServiceManagement> results = new ArrayList<>();
         
-        for (Service s : services) {
+        for (ServiceManagement s : services) {
             if (s.getName().toLowerCase().contains(keyword.toLowerCase())) {
                 results.add(s);
             }
@@ -179,16 +179,15 @@ class Service_management {
             System.out.println("\n===== KẾT QUẢ TÌM KIẾM =====");
             System.out.println("ID    Tên             Giá");
             System.out.println("----------------------------------");
-            for (Service s : results) {
+            for (ServiceManagement s : results) {
                 System.out.println(s);
             }
             System.out.println("----------------------------------");
         }
     }
     
-    // Chương trình demo
-    public static void main(String[] args) {
-        Service_management sm = new Service_management();
+    // Phương thức hiển thị menu và xử lý
+    public void show_service() {
         Scanner sc = new Scanner(System.in);
         
         while (true) {
@@ -206,7 +205,7 @@ class Service_management {
             
             switch (choice) {
                 case 1:
-                    sm.viewAllServices();
+                    viewAllServices();
                     break;
                     
                 case 2:
@@ -216,7 +215,7 @@ class Service_management {
                     String name = sc.nextLine();
                     System.out.print("Nhập giá: ");
                     double price = sc.nextDouble();
-                    sm.addService(id, name, price);
+                    addService(id, name, price);
                     break;
                     
                 case 3:
@@ -226,19 +225,19 @@ class Service_management {
                     String newName = sc.nextLine();
                     System.out.print("Nhập giá mới: ");
                     double newPrice = sc.nextDouble();
-                    sm.updateService(updateId, newName, newPrice);
+                    updateService(updateId, newName, newPrice);
                     break;
                     
                 case 4:
                     System.out.print("Nhập ID cần xóa: ");
                     String deleteId = sc.nextLine();
-                    sm.deleteService(deleteId);
+                    deleteService(deleteId);
                     break;
                     
                 case 5:
                     System.out.print("Nhập tên cần tìm: ");
                     String keyword = sc.nextLine();
-                    sm.searchByName(keyword);
+                    searchByName(keyword);
                     break;
                     
                 case 0:
