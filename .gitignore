@@ -33,3 +33,16 @@ bin/
 ### Mac OS ###
 .DS_Store
 /build/
+
+# Ignore build and NetBeans project files
+build.xml
+manifest.xml
+nbproject/
+
+# Ignore everything by default
+*
+
+# Except src folder and .gitignore itself
+!.gitignore
+!src/
+!src/**/*
