@@ -34,14 +34,10 @@ public class HotelManagementConsoleApp {
                     rm.saveToFile();
                     break;
                 case 2:
-                    System.out.println("----Chức năng quản lý nhân viên----");
-                    /*
-                    Xem tất cả nhân viên
-                    Xem nhân viên theo chức vụ (Receptionist,Chef,Cleaner)
-                    Thêm nhân viên mới
-                    Sửa thông tin nhân viên
-                    Xóa nhân viên
-                     */
+                    EmployeeManager em = new EmployeeManager(sc, cleaner);
+                    em.readFromFile();
+                    em.showMenu();
+                    em.saveToFile();
                     break;
                 case 3:
                     System.out.println("----Chức năng quản lý khách hàng----");
@@ -74,14 +70,8 @@ public class HotelManagementConsoleApp {
                      */
                     break;
                 case 6:
-                    System.out.println("----Chức năng quản lý dịch vụ----");
-                    /*
-                    Xem tất cả dịch vụ hiện có
-                    Thêm dịch vụ
-                    Sửa dịch vụ
-                    Xóa dịch vụ
-                    Tìm dịch vụ theo tên
-                     */
+                    ServiceManagement sm = new ServiceManagement();
+                    sm.show_service();
                     break;
                 case 7:
                     System.out.println("----Chức năng quản lý ưu đãi----");
