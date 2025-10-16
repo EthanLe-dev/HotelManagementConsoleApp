@@ -7,6 +7,7 @@ public class RoomManager implements FileHandler{
     private final Scanner sc;
     private final ClearScreen cleaner;
     private static ArrayList<Room> roomList;
+    private final File f = new File("data/RoomData");
 
     public RoomManager(Scanner sc, ClearScreen cleaner) {
         this.sc = sc;
@@ -78,9 +79,9 @@ public class RoomManager implements FileHandler{
         System.out.print("Bạn muốn xem phòng loại nào(Standard/Suite): ");
         String type = sc.nextLine();
 
-        if(type.equals("Standard") || type.equals("Suite")) {
+        if(type.equalsIgnoreCase("Standard") || type.equalsIgnoreCase("Suite")) {
             for (Room r : roomList) {
-                if (r.getRoomType().equals(type))
+                if (r.getRoomType().equalsIgnoreCase(type))
                     r.showRoomInfo();
             }
             System.out.println("\n");
@@ -166,7 +167,6 @@ public class RoomManager implements FileHandler{
 
     // Đọc dữ liệu phòng từ file RoomData
     public void readFromFile() {
-        File f = new File("data/RoomData");
         roomList.clear();
 
         if (!f.exists()) {
@@ -194,12 +194,11 @@ public class RoomManager implements FileHandler{
 
     // Lưu dữ liệu phòng vào file RoomData
     public void saveToFile() {
-        File f = new File("data/RoomData");
-
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(f))) {
             String header = "ID Phòng | Loại phòng | Giá | Đã đặt hay chưa";
             bw.write(header);
             bw.newLine();
+
             for (Room r : roomList) {
                 String line = String.format("%d,%s,%.0f,%b",
                         r.getRoomID(), r.getRoomType(), r.getRoomPrice(), r.getIsAvailable());

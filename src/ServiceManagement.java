@@ -2,12 +2,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Interface FileHandler
-interface FileHandler {
-    void readFromFile();
-    void saveToFile();
-}
-
 // Lớp Service - chứa các thuộc tính,settter và getter,constructor và các phương thức về xử lý file,string
 class Service implements FileHandler {
     private String id;
@@ -110,7 +104,7 @@ public class ServiceManagement {
             return false;
         }
         // Kiểm tra chỉ chứa chữ cái, khoảng trắng và các ký tự tiếng Việt
-        return name.matches("[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẤỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ ]*");
+        return name.matches("[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ ]*");
     }
     
     // Kiểm tra giá: phải là số dương
@@ -312,17 +306,11 @@ public class ServiceManagement {
                     break;
                     
                 case 0:
-                    System.out.println("Tạm biệt!");
-                    sc.close();
                     return;
                     
                 default:
                     System.out.println("Lựa chọn không hợp lệ!");
             }
         }
-    }
-    public static void main(String[] args) {
-        ServiceManagement sm = new ServiceManagement();
-        sm.show_service();
     }
 }
