@@ -79,48 +79,58 @@ public class EmployeeManager implements FileHandler{
 
     // Sửa thông tin nhân viên
     public void setEmployeeInfo() {
-        System.out.print("Chọn tìm theo <TÊN> hoặc <SĐT>: ");
-        String choice = sc.nextLine().trim();
+        System.out.println("Chọn phương án tìm:");
+        System.out.println("1.Tìm theo tên");
+        System.out.println("2.Tìm theo SĐT");
 
-        if (choice.equalsIgnoreCase("tên")) {
-            Employee employee = searchEmployeeByName();
-            if (employee == null)
-                return;
-            typeNewInfo(employee);
+        try {
+            int choice = Integer.parseInt(sc.nextLine().trim());
+            if (choice == 1) {
+                Employee employee = searchEmployeeByName();
+                if (employee == null)
+                    return;
+
+                typeNewInfo(employee);
+            } else if (choice == 2) {
+                Employee employee = searchEmployeeByPhone();
+                if (employee == null)
+                    return;
+
+                typeNewInfo(employee);
+            } else
+                System.out.println("Nhập số 1 hoặc 2 nhé\n");
+        } catch (NumberFormatException e) {
+            System.out.println("Nhập số 1 hoặc 2 nhé\n");
         }
-        else  if (choice.equalsIgnoreCase("SĐT") || choice.equalsIgnoreCase("SDT")){
-            Employee employee = searchEmployeeByPhone();
-            if (employee == null)
-                return;
-            typeNewInfo(employee);
-        }
-        else
-            System.out.println("Chọn tìm theo <Tên> hoặc <SĐT> nhé\n");
     }
 
     // Xóa nhân viên
     public void removeEmployee() {
-        System.out.print("Chọn tìm theo <TÊN> hoặc <SĐT>: ");
-        String choice = sc.nextLine().trim();
+        System.out.println("Chọn phương án tìm:");
+        System.out.println("1.Tìm theo tên");
+        System.out.println("2.Tìm theo SĐT");
 
-        if (choice.equalsIgnoreCase("tên")) {
-            Employee employee = searchEmployeeByName();
-            if (employee == null)
-                return;
+        try {
+            int choice = Integer.parseInt(sc.nextLine().trim());
+            if (choice == 1) {
+                Employee employee = searchEmployeeByName();
+                if (employee == null)
+                    return;
 
-            employeeList.remove(employee);
-            System.out.println("Xóa nhân viên "+employee.getEmployeeName()+" thành công");
+                employeeList.remove(employee);
+                System.out.println("Xóa nhân viên " + employee.getEmployeeName() + " thành công");
+            } else if (choice == 2) {
+                Employee employee = searchEmployeeByPhone();
+                if (employee == null)
+                    return;
+
+                employeeList.remove(employee);
+                System.out.println("Xóa nhân viên " + employee.getEmployeeName() + " thành công");
+            } else
+                System.out.println("Nhập số 1 hoặc 2 nhé\n");
+        } catch (NumberFormatException e) {
+            System.out.println("Nhập số 1 hoặc 2 nhé\n");
         }
-        else  if (choice.equalsIgnoreCase("SĐT") || choice.equalsIgnoreCase("SDT")){
-            Employee employee = searchEmployeeByPhone();
-            if (employee == null)
-                return;
-
-            employeeList.remove(employee);
-            System.out.println("Xóa nhân viên "+employee.getEmployeeName()+" thành công");
-        }
-        else
-            System.out.println("Chọn tìm theo <Tên> hoặc <SĐT> nhé\n");
     }
 
     // Xem nhân viên theo chức vụ
