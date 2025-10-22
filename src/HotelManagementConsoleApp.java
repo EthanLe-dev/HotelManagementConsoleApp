@@ -4,8 +4,19 @@ public class HotelManagementConsoleApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ClearScreen cleaner = new ClearScreen();
-        int choice;
 
+        RoomManager rm = new RoomManager(sc, cleaner);
+        EmployeeManager em = new EmployeeManager(sc, cleaner);
+        ServiceManagement sm = new ServiceManagement(sc, cleaner);
+        PromotionManager pm = new PromotionManager();
+        readAllData(rm, em, sm, pm);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("Đang lưu dữ liệu trước khi thoát...");
+            saveAllData(rm, em, sm ,pm);
+        }));
+
+        int choice;
         while (true) {
             cleaner.clearScreen();
             System.out.println("------Ứng dụng quản lý khách sạn Nhóm 11------");
@@ -28,16 +39,10 @@ public class HotelManagementConsoleApp {
 
             switch (choice) {
                 case 1:
-                    RoomManager rm = new RoomManager(sc, cleaner);
-                    rm.readFromFile();
                     rm.showMenu();
-                    rm.saveToFile();
                     break;
                 case 2:
-                    EmployeeManager em = new EmployeeManager(sc, cleaner);
-                    em.readFromFile();
                     em.showMenu();
-                    em.saveToFile();
                     break;
                 case 3:
                     System.out.println("----Chức năng quản lý khách hàng----");
@@ -70,18 +75,10 @@ public class HotelManagementConsoleApp {
                      */
                     break;
                 case 6:
-                    ServiceManagement sm = new ServiceManagement();
-                    sm.show_service();
+                    sm.showMenu();
                     break;
                 case 7:
-                    System.out.println("----Chức năng quản lý ưu đãi----");
-                    /*
-                    Xem tất cả chương trình KM hiện có
-                    Thêm CTKM
-                    Sửa CTKM
-                    Xóa CTKM
-                    Tìm CTKM theo tên
-                     */
+
                     break;
                 case 0:
                     System.out.println("Thoát chương trình...");
@@ -90,5 +87,19 @@ public class HotelManagementConsoleApp {
                     System.out.println("Vui lòng nhập số từ 0-8");
             }
         }
+    }
+
+    public static void readAllData(RoomManager rm, EmployeeManager em, ServiceManagement sm, PromotionManager pm) {
+        rm.readFromFile();
+        em.readFromFile();
+        sm.readFromFile();
+        pm.readFromFile();
+    }
+
+    public static void saveAllData(RoomManager rm, EmployeeManager em, ServiceManagement sm, PromotionManager pm) {
+        rm.saveToFile();
+        em.saveToFile();
+        sm.saveToFile();
+        pm.saveToFile();
     }
 }

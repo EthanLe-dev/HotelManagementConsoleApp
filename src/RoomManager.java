@@ -53,6 +53,7 @@ public class RoomManager implements FileHandler{
                     addRoom();
                     break;
                 case 0:
+                    saveToFile();
                     return;
                 default:
                     System.out.println("\nVui lòng nhập các số từ 0-5\n");
