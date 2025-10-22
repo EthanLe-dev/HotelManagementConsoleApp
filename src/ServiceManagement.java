@@ -106,6 +106,7 @@ public class ServiceManagement implements FileHandler {
                     searchByName();
                     break;
                 case 0:
+                    saveToFile();
                     return;
                 default:
                     System.out.println("\nVui lòng nhập các số từ 0-5\n");

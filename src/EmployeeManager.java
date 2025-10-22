@@ -56,6 +56,7 @@ public class EmployeeManager implements FileHandler{
                     showSalary();
                     break;
                 case 0:
+                    saveToFile();
                     return;
                 default:
                     System.out.println("\nVui lòng nhập các số từ 0-6\n");
