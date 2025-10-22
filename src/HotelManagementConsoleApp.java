@@ -78,7 +78,7 @@ public class HotelManagementConsoleApp {
                     sm.showMenu();
                     break;
                 case 7:
-
+                    pm.showMenu();
                     break;
                 case 0:
                     System.out.println("Thoát chương trình...");
