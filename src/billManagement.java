@@ -3,12 +3,13 @@ import java.io.IOException;
 import java.util.*;
 
 public class BillManager {
-    private List<Bill> billList = new ArrayList<>();
+    private List<Bill> billList;
     private CustomerManager customerManager;
     private RoomManager roomManager;
     private EmployeeManager employeeManager;
 
     public BillManager(CustomerManager customerManager, RoomManager roomManager, EmployeeManager employeeManager) {
+        this.billList = new ArrayList<>();
         this.customerManager = customerManager;
         this.roomManager = roomManager;
         this.employeeManager = employeeManager;
