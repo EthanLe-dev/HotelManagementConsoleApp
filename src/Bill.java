@@ -26,7 +26,7 @@ public class Bill {
         System.out.println("===== BILL INFORMATION =====");
         System.out.println("Bill ID: " + billId);
         System.out.println("Customer: " + customer.getName());
-        System.out.println("Room: " + room.getRoomID());
+        System.out.println("Room: " + room.getRoomId());
         System.out.println("Days: " + days);
         System.out.println("Services used:");
         for (Service s : services) {
