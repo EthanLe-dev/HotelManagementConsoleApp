@@ -123,6 +123,11 @@ public class BillManager implements FileHandler{
                 .map(Map.Entry::getKey)
                 .orElse("Không có dữ liệu");
     }
+
+    public void showMenu() {
+
+    }
+
     public void readFromFile() {
 
     }

@@ -38,6 +38,15 @@ public class HotelManagementConsoleApp {
             System.out.println("7.Quản lý ưu đãi");         // Thái
             System.out.println("0.Thoát chương trình");
 
+            /*
+            @GÓP Ý CỦA CÔ:
+            -Bill
+            -Thêm ngày checkin
+            -
+            -
+            -
+             */
+
             try {
                 System.out.print("Nhập lựa chọn: ");
                 choice = Integer.parseInt(sc.nextLine().trim());
