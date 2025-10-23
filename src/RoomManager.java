@@ -153,6 +153,17 @@ public class RoomManager implements FileHandler{
         room.showRoomInfo();
     }
 
+    public Room searchByID(String ID) {
+        int keyID = Integer.parseInt(ID);
+
+        for (Room r : roomList) {
+            if (r.getRoomID() == keyID) {
+                return r;
+            }
+        }
+        return null;
+    }
+
     public static int getRoomListSize() {
         return roomList.size();
     }
