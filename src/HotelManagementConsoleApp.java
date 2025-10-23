@@ -2,20 +2,29 @@ import java.util.Scanner;
 
 public class HotelManagementConsoleApp {
     public static void main(String[] args) {
+        // Đối tượng chung cho cả chương trình
         Scanner sc = new Scanner(System.in);
-        ClearScreen cleaner = new ClearScreen();
+        ClearScreen cleaner = new ClearScreen(); // Xóa trắng màn hình
 
+        // Khởi tạo tất cả đối tượng Quản lý
         RoomManager rm = new RoomManager(sc, cleaner);
         EmployeeManager em = new EmployeeManager(sc, cleaner);
         ServiceManagement sm = new ServiceManagement(sc, cleaner);
         PromotionManager pm = new PromotionManager();
-        readAllData(rm, em, sm, pm);
+        CustomerManager cm = new CustomerManager();
+        BookingManager bm = new BookingManager();
+        BillManager billManager = new BillManager(cm, rm, em);
 
+        // Đọc tất cả file DATA
+        readAllData(rm, em, sm, pm, cm, bm, billManager);
+
+        // Lưu dữ liệu lần cuối trước khi thoát chương trình
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Đang lưu dữ liệu trước khi thoát...");
-            saveAllData(rm, em, sm ,pm);
+            saveAllData(rm, em, sm ,pm, cm, bm, billManager);
         }));
 
+        // Menu chính
         int choice;
         while (true) {
             cleaner.clearScreen();
@@ -33,7 +42,7 @@ public class HotelManagementConsoleApp {
                 System.out.print("Nhập lựa chọn: ");
                 choice = Integer.parseInt(sc.nextLine().trim());
             } catch (NumberFormatException e) {
-                System.out.println("Vui lòng nhập số từ 0-8");
+                System.out.println("Vui lòng nhập số từ 0-7");
                 continue;
             }
 
@@ -45,34 +54,13 @@ public class HotelManagementConsoleApp {
                     em.showMenu();
                     break;
                 case 3:
-                    System.out.println("----Chức năng quản lý khách hàng----");
-                    /*
-                    Xem tất cả khách hàng
-                    Xem khách hàng theo cấp Member
-                    Thêm khách hàng mới
-                    Sửa thông tin khách
-                    Xóa khách hàng theo SĐT
-                     */
+                    cm.showMenu();
                     break;
                 case 4:
-                    System.out.println("----Chức năng quản lý đặt phòng----");
-                    /*
-                    Xem tất cả phòng đã đặt/chưa đặt
-                    Tạo 1 lịch đặt
-                    Sửa 1 lịch đặt
-                    Xóa 1 lịch đặt
-                    Xem lịch đặt theo tên khách
-                     */
+                    bm.showMenu();
                     break;
                 case 5:
-                    System.out.println("----Chức năng quản lý hóa đơn----");
-                    /*
-                    Xem tất cả lịch đặt từ booking
-                    Xử lý thanh toán -> ra hóa đơn
-                    Xem tất cả hóa đơn đã thanh toán
-                    Tìm hóa đơn theo tên khách
-                    Xem tổng doanh thu/in ra file HotelData
-                     */
+                    billManager.showMenu();
                     break;
                 case 6:
                     sm.showMenu();
@@ -81,25 +69,32 @@ public class HotelManagementConsoleApp {
                     pm.showMenu();
                     break;
                 case 0:
-                    System.out.println("Thoát chương trình...");
                     return;
                 default:
-                    System.out.println("Vui lòng nhập số từ 0-8");
+                    System.out.println("Vui lòng nhập số từ 0-7");
             }
         }
     }
 
-    public static void readAllData(RoomManager rm, EmployeeManager em, ServiceManagement sm, PromotionManager pm) {
+    public static void readAllData(RoomManager rm, EmployeeManager em, ServiceManagement sm, PromotionManager pm,
+                                   CustomerManager cm, BookingManager bm, BillManager billManager) {
         rm.readFromFile();
         em.readFromFile();
         sm.readFromFile();
         pm.readFromFile();
+        cm.readFromFile();
+        bm.readFromFile();
+        billManager.readFromFile();
     }
 
-    public static void saveAllData(RoomManager rm, EmployeeManager em, ServiceManagement sm, PromotionManager pm) {
+    public static void saveAllData(RoomManager rm, EmployeeManager em, ServiceManagement sm, PromotionManager pm,
+                                   CustomerManager cm, BookingManager bm, BillManager billManager) {
         rm.saveToFile();
         em.saveToFile();
         sm.saveToFile();
         pm.saveToFile();
+        cm.saveToFile();
+        bm.saveToFile();
+        billManager.saveToFile();
     }
 }
