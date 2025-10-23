@@ -35,7 +35,7 @@ public class BillManager {
         }
 
         System.out.print("Nhập số ngày thuê: ");
-        int days = Integer.parseInt(sc.nextLine());
+        int days = Integer.parseInt(sc.nextLine().trim());
 
         List<Service> usedServices = new ArrayList<>();
         System.out.println("Nhập tên dịch vụ sử dụng (gõ 'x' để dừng): ");
