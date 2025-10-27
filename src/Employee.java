@@ -21,7 +21,6 @@ public abstract class Employee {
     public void setEmployeeName(String employeeName) { this.employeeName = employeeName;}
     public void setPhone(String phone) { this.phone = phone;}
 
-    public static int getNumberOfEmployees() { return numberOfEmployees;}
     public abstract void showInfo();
     public abstract double calculateSalary();
     public abstract int getWorkingCount();

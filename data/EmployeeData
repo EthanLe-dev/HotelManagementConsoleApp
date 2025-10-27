@@ -1,16 +1,16 @@
-ID nhân viên | Tên nhân viên | SĐT | Chức vụ | Lương | Số lần nhận thưởng
-001,Lê Ngọc Quý,0432895295,Receptionist,9040000,2
-002,Đỗ Gia Phú,0583748274,Cleaner,7020000,1
-003,Quốc Thịnh,0985375983,Chef,12060000,3
-004,Thông Thái,0247843987,Receptionist,9080000,4
-005,Trần Hồng Sơn,0362849374,Cleaner,7800000,2
-006,Nguyễn Nhật Hào,0973847582,Receptionist,8700000,3
-007,Lâm Gia Bảo,0912839472,Chef,11500000,4
-008,Phạm Minh Tuấn,0819283746,Cleaner,7600000,1
-009,Trần Thị Hương,0902837465,Receptionist,8900000,2
-010,Võ Hoàng Tân,0982746382,Cleaner,7200000,2
-011,Ngô Thị Hà,0859374628,Receptionist,8800000,1
-012,Lê Quốc Đạt,0904728391,Chef,11200000,3
-013,Đặng Bảo Ngọc,0827463915,Receptionist,9100000,3
-014,Trần Đức Long,0974827365,Cleaner,7400000,2
-015,Nguyễn Thị Hòa,0937482910,Chef,12500000,5
+ID nhân viên | Tên nhân viên | SĐT | Chức vụ | Số lần nhận thưởng
+001,Lê Ngọc Quý    ,0432895295,Receptionist   ,9040000,002
+002,Đỗ Gia Phú     ,0583748274,Cleaner        ,7020000,001
+003,Quốc Thịnh     ,0985375983,Chef           ,12060000,003
+004,Thông Thái     ,0247843987,Receptionist   ,9080000,004
+005,Trần Hồng Sơn  ,0362849374,Cleaner        ,7040000,002
+006,Nguyễn Nhật Hào,0973847582,Receptionist   ,9060000,003
+007,Lâm Gia Bảo    ,0912839472,Chef           ,12080000,004
+008,Phạm Minh Tuấn ,0819283746,Cleaner        ,7020000,001
+009,Trần Thị Hương ,0902837465,Receptionist   ,9040000,002
+010,Võ Hoàng Tân   ,0982746382,Cleaner        ,7040000,002
+011,Ngô Thị Hà     ,0859374628,Receptionist   ,9020000,001
+012,Lê Quốc Đạt    ,0904728391,Chef           ,12060000,003
+013,Đặng Bảo Ngọc  ,0827463915,Receptionist   ,9060000,003
+014,Trần Đức Long  ,0974827365,Cleaner        ,7040000,002
+015,Nguyễn Thị Hòa ,0937482910,Chef           ,12100000,005

@@ -4,23 +4,23 @@ public class HotelManagementConsoleApp {
     public static void main(String[] args) {
         // Đối tượng chung cho cả chương trình
         Scanner sc = new Scanner(System.in);
-        ClearScreen cleaner = new ClearScreen(); // Xóa trắng màn hình
+        ClearConsoleScreen cleaner = new ClearConsoleScreen();    // Đối tượng dùng để xóa trắng màn hình
 
         // Khởi tạo tất cả đối tượng Quản lý
         RoomManager rm = new RoomManager(sc, cleaner);
         EmployeeManager em = new EmployeeManager(sc, cleaner);
         ServiceManagement sm = new ServiceManagement(sc, cleaner);
         PromotionManager pm = new PromotionManager();
-        CustomerManager cm = new CustomerManager();
-        BookingManager bm = new BookingManager();
-        BillManager billManager = new BillManager(cm, rm, em);
+        CustomerManager cm = new CustomerManager(sc);
+        BookingManager bm = new BookingManager(cm, rm, sc);
+        BillManager billManager = new BillManager(sm, pm, bm);
 
         // Đọc tất cả file DATA
         readAllData(rm, em, sm, pm, cm, bm, billManager);
 
         // Lưu dữ liệu lần cuối trước khi thoát chương trình
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("Đang lưu dữ liệu trước khi thoát...");
+            System.out.println("\nĐang lưu dữ liệu trước khi thoát...");
             saveAllData(rm, em, sm ,pm, cm, bm, billManager);
         }));
 
@@ -37,15 +37,6 @@ public class HotelManagementConsoleApp {
             System.out.println("6.Quản lý dịch vụ");        // Thái
             System.out.println("7.Quản lý ưu đãi");         // Thái
             System.out.println("0.Thoát chương trình");
-
-            /*
-            @GÓP Ý CỦA CÔ:
-            -Bill
-            -Thêm ngày checkin
-            -
-            -
-            -
-             */
 
             try {
                 System.out.print("Nhập lựa chọn: ");

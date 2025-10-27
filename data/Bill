@@ -1,51 +1,51 @@
-ID Bill | Khách | ID phòng | dịch vụ sử dụng | tổng tiền | tên lễ tân
-001,Trần Thanh Hiếu,103,Mì xào bò,Nước suối,450000,Lê Ngọc Quý
-002,Lê Trung Thực,202,Mì tôm trứng,430000,Thông Thái
-003,Nguyễn Thanh Sơn,204,500000,Lê Ngọc Quý
-004,Phạm Minh Đức,101,Cà phê sữa,Trà gừng,380000,Nguyễn Nhật Hào
-005,Trần Hữu Tài,105,Bún bò,Trà đá,420000,Thông Thái
-006,Nguyễn Huy Hoàng,110,Phở bò,Nước cam,460000,Lê Ngọc Quý
-007,Lê Văn Khải,108,Bánh mì ốp la,Nước suối,370000,Trần Hoàng Minh
-008,Phạm Anh Dũng,107,Mì xào hải sản,Trà đào,490000,Nguyễn Nhật Hào
-009,Đỗ Trung Kiên,109,Bún thịt nướng,Nước ngọt,400000,Thông Thái
-010,Võ Minh Quân,106,Mì trứng,Trà tắc,350000,Lê Ngọc Quý
-011,Ngô Thị Mai,203,Phở gà,Trà sữa,470000,Trần Hoàng Minh
-012,Lê Anh Thư,205,Bánh cuốn,Nước suối,320000,Thông Thái
-013,Trần Nhật Nam,206,Bún bò Huế,Trà chanh,410000,Nguyễn Nhật Hào
-014,Nguyễn Ngọc Ánh,207,Mì ý,Nước ép dưa hấu,430000,Lê Ngọc Quý
-015,Phan Gia Hưng,208,Bánh canh,Nước cam,460000,Thông Thái
-016,Trần Đức Long,209,Cơm chiên,Nước suối,440000,Lê Ngọc Quý
-017,Nguyễn Thanh Hà,210,Hủ tiếu xào,Trà đào,380000,Trần Hoàng Minh
-018,Đinh Thị Mỹ,201,Mì trứng,Nước ép cà rốt,370000,Nguyễn Nhật Hào
-019,Hồ Đức Thắng,202,Bún chả,Nước ngọt,450000,Thông Thái
-020,Phạm Tấn Đạt,204,Bún riêu,Nước cam,480000,Lê Ngọc Quý
-021,Trần Minh Vương,301,Cơm gà,Trà chanh,600000,Nguyễn Nhật Hào
-022,Đặng Hải Nam,302,Mì xào bò,Nước suối,680000,Thông Thái
-023,Vũ Quỳnh Trang,303,Bún bò Huế,Nước cam,720000,Lê Ngọc Quý
-024,Nguyễn Tấn Phát,304,Hủ tiếu Nam Vang,Trà sữa,650000,Trần Hoàng Minh
-025,Phạm Quang Duy,305,Mì trứng,Nước ép ổi,700000,Nguyễn Nhật Hào
-026,Lê Thị Hạnh,306,Cơm rang dưa bò,Nước suối,800000,Thông Thái
-027,Trần Trung Hiếu,307,Bún chả,Nước ngọt,900000,Lê Ngọc Quý
-028,Nguyễn Quốc Hùng,308,Mì xào trứng,Nước cam,610000,Trần Hoàng Minh
-029,Võ Anh Tuấn,309,Bún riêu,Nước suối,750000,Nguyễn Nhật Hào
-030,Phan Hoàng Phúc,310,Bánh cuốn,Nước ép dưa hấu,830000,Thông Thái
-031,Lê Thị Huyền,401,Mì ý,Nước suối,720000,Lê Ngọc Quý
-032,Nguyễn Trọng Tín,402,Bánh mì trứng,Trà chanh,590000,Trần Hoàng Minh
-033,Đỗ Anh Khoa,403,Bún chả,Hồng trà,920000,Nguyễn Nhật Hào
-034,Phạm Bảo Châu,404,Hủ tiếu xào,Nước suối,650000,Thông Thái
-035,Nguyễn Duy Tân,405,Mì xào bò,Trà đào,800000,Lê Ngọc Quý
-036,Trần Hồng Sơn,406,Bánh canh,Nước ép táo,780000,Nguyễn Nhật Hào
-037,Lý Quang Nhật,407,Cơm chiên,Nước cam,680000,Trần Hoàng Minh
-038,Vũ Bảo Ngọc,408,Bún thịt nướng,Nước suối,820000,Thông Thái
-039,Lê Hoàng Phúc,409,Mì tôm trứng,Nước ép ổi,930000,Lê Ngọc Quý
-040,Nguyễn Thị Thanh,410,Hủ tiếu Nam Vang,Trà sữa,710000,Nguyễn Nhật Hào
-041,Đỗ Thị Phương,501,Mì ý,Nước ngọt,600000,Trần Hoàng Minh
-042,Trần Gia Hân,502,Cơm tấm,Nước cam,580000,Thông Thái
-043,Lý Quốc Huy,503,Bún riêu,Nước suối,900000,Lê Ngọc Quý
-044,Nguyễn Thanh Bình,504,Bánh cuốn,Trà đào,720000,Nguyễn Nhật Hào
-045,Lâm Gia Khánh,505,Mì trứng,Trà sữa,950000,Thông Thái
-046,Ngô Nhật Hào,506,Hủ tiếu xào,Nước cam,820000,Lê Ngọc Quý
-047,Vũ Hữu Tài,507,Bún bò Huế,Nước ép cà rốt,650000,Trần Hoàng Minh
-048,Phạm Minh Châu,508,Mì xào hải sản,Trà chanh,780000,Nguyễn Nhật Hào
-049,Lê Hoài Nam,509,Bánh mì ốp la,Nước suối,850000,Thông Thái
-050,Nguyễn Thị Hòa,510,Bún thịt nướng,Nước ép dưa hấu,600000,Lê Ngọc Quý
+ID Bill | Khách | ID phòng | dịch vụ sử dụng | tổng tiền | tên lễ tân | CTKM đã áp dụng
+001,Phạm Gia Huy,102,Mì xào bò,Nước suối,,450000,Lê Ngọc Quý,null
+002,Trần Hoàng Vinh,210,Mì tôm trứng,,430000,Thông Thái,null
+003,Hồ Anh Đức,208,,500000,Lê Ngọc Quý,null
+004,Trần Vỹ,403,Cà phê sữa,Trà gừng,,380000,Nguyễn Nhật Hào,null
+005,Lê Nguyễn Nhật Hào,305,Bún bò,,420000,Thông Thái,null
+006,Trần Hữu Tài,303,Phở bò,Nước cam,,460000,Lê Ngọc Quý,null
+007,Đỗ Trung Kiên,209,Bánh mì ốp la,Nước suối,,370000,Trần Hoàng Minh,null
+008,Lê Thị Hạnh,310,Mì xào hải sản,Trà đào,,490000,Nguyễn Nhật Hào,null
+009,Phạm Tấn Đạt,410,Bún thịt nướng,Nước ngọt,,400000,Thông Thái,null
+010,Vũ Minh Quân,210,Mì trứng,Trà tắc,,350000,Lê Ngọc Quý,null
+011,Ngô Thị Mai,308,Phở gà,Trà sữa,,470000,Trần Hoàng Minh,null
+012,Ngô Thị Mai,308,Bánh cuốn,Nước suối,,320000,Thông Thái,null
+013,Trần Đức Long,305,Bún bò Huế,Trà chanh,,410000,Nguyễn Nhật Hào,null
+014,Phạm Minh Đức,307,Mì ý,Nước ép dưa hấu,,430000,Lê Ngọc Quý,null
+015,Trần Minh Vương,301,Bánh canh,Nước cam,,460000,Thông Thái,null
+016,Lê Hoàng Phúc,407,Cơm chiên,Nước suối,,440000,Lê Ngọc Quý,null
+017,Trần Hoàng Vinh,210,Hủ tiếu xào,Trà đào,,380000,Trần Hoàng Minh,null
+018,Hồ Anh Đức,208,Mì trứng,Nước ép cà rốt,,370000,Nguyễn Nhật Hào,null
+019,Lê Thị Hạnh,310,Bún chả,Nước ngọt,,450000,Thông Thái,null
+020,Nguyễn Huy Hoàng,204,Bún riêu,Nước cam,,480000,Lê Ngọc Quý,null
+021,Phạm Gia Huy,102,Cơm gà,Trà chanh,,600000,Nguyễn Nhật Hào,null
+022,Trần Thanh Hiếu,103,Mì xào bò,Nước suối,,680000,Thông Thái,null
+023,Đỗ Trung Kiên,209,Bún bò Huế,Nước cam,,720000,Lê Ngọc Quý,null
+024,Phạm Minh Đức,307,Hủ tiếu Nam Vang,Trà sữa,,650000,Trần Hoàng Minh,null
+025,Trần Vỹ,403,Mì trứng,Nước ép ổi,,700000,Nguyễn Nhật Hào,null
+026,Quách Tuấn Anh,306,Cơm rang dưa bò,Nước suối,,800000,Thông Thái,null
+027,Lê Nguyễn Nhật Hào,305,Nước ngọt,,900000,Lê Ngọc Quý,null
+028,Trần Minh Vương,301,Mì xào trứng,Nước cam,,610000,Trần Hoàng Minh,null
+029,Lê Hoàng Phúc,407,Bún riêu,Nước suối,,750000,Nguyễn Nhật Hào,null
+030,Phan Gia Hưng,205,Bánh cuốn,Nước ép dưa hấu,,830000,Thông Thái,null
+031,Trần Đức Long,305,Mì ý,Nước suối,,720000,Lê Ngọc Quý,null
+032,Phạm Tấn Đạt,410,Bánh mì trứng,Trà chanh,,590000,Trần Hoàng Minh,null
+033,Ngô Thị Mai,308,Bún chả,Hồng trà,,920000,Nguyễn Nhật Hào,null
+034,Quách Tuấn Anh,306,Hủ tiếu xào,Nước suối,,650000,Thông Thái,null
+035,Hồ Anh Đức,208,Mì xào bò,Trà đào,,800000,Lê Ngọc Quý,null
+036,Trần Thanh Hiếu,103,Bánh canh,Nước ép táo,,780000,Nguyễn Nhật Hào,null
+037,Phạm Tấn Đạt,410,Cơm chiên,Nước cam,,680000,Trần Hoàng Minh,null
+038,Phan Gia Hưng,205,Bún thịt nướng,Nước suối,,820000,Thông Thái,null
+039,Phạm Gia Huy,102,Mì tôm trứng,Nước ép ổi,,930000,Lê Ngọc Quý,null
+040,Phạm Minh Đức,307,Hủ tiếu Nam Vang,Trà sữa,,710000,Nguyễn Nhật Hào,null
+041,Quách Tuấn Anh,306,Mì ý,Nước ngọt,,600000,Trần Hoàng Minh,null
+042,Vũ Minh Quân,210,Cơm tấm,Nước cam,,580000,Thông Thái,null
+043,Trần Vỹ,403,Bún riêu,Nước suối,,900000,Lê Ngọc Quý,null
+044,Trần Hữu Tài,303,Bánh cuốn,Trà đào,,720000,Nguyễn Nhật Hào,null
+045,Lê Thị Hạnh,310,Mì trứng,Trà sữa,,950000,Thông Thái,null
+046,Nguyễn Huy Hoàng,204,Hủ tiếu xào,Nước cam,,820000,Lê Ngọc Quý,null
+047,Nguyễn Thanh Sơn,402,Bún bò Huế,Nước ép cà rốt,,650000,Trần Hoàng Minh,null
+048,Lê Nguyễn Nhật Hào,305,Mì xào hải sản,Trà chanh,,780000,Nguyễn Nhật Hào,null
+049,Phạm Tấn Đạt,410,Bánh mì ốp la,Nước suối,,850000,Thông Thái,null
+050,Lê Hoàng Phúc,407,Bún thịt nướng,Nước ép dưa hấu,,600000,Lê Ngọc Quý,null

@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class EmployeeManager implements FileHandler{
     private final Scanner sc;
-    private final ClearScreen cleaner;
+    private final ClearConsoleScreen cleaner;
     private static ArrayList<Employee> employeeList;
     private final File f = new File("data/EmployeeData");
 
-    public EmployeeManager(Scanner sc, ClearScreen cleaner) {
+    public EmployeeManager(Scanner sc, ClearConsoleScreen cleaner) {
         this.sc = sc;
         this.cleaner = cleaner;
         employeeList = new ArrayList<>();

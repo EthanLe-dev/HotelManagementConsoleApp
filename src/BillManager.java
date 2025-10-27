@@ -1,132 +1,164 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
+import java.io.*;
 
 public class BillManager implements FileHandler{
+    private String filename = "data/Bill";
     private List<Bill> billList;
-    private CustomerManager customerManager;
-    private RoomManager roomManager;
-    private EmployeeManager employeeManager;
+    private ServiceManagement serviceManager;
+    private PromotionManager promotionManager;
+    private BookingManager bookingManager;
 
-    public BillManager(CustomerManager customerManager, RoomManager roomManager, EmployeeManager employeeManager) {
-        this.billList = new ArrayList<>();
-        this.customerManager = customerManager;
-        this.roomManager = roomManager;
-        this.employeeManager = employeeManager;
+    public BillManager(ServiceManagement serviceManager, PromotionManager promotionManager, BookingManager bookingManager) {
+        this.serviceManager = serviceManager;
+        this.promotionManager = promotionManager;
+        this.bookingManager = bookingManager;
+        billList = new ArrayList<>();
     }
 
-    // ====== 1. Thêm hóa đơn ======
-    public void addBill() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Nhập tên khách hàng: ");
-        String name = sc.nextLine();
-        Customer c = customerManager.searchByName(name);
-        if (c == null) {
-            System.out.println("⚠️ Khách hàng chưa tồn tại. Tạo mới...");
-            c = customerManager.addNewCustomer();
-        }
-
-        System.out.print("Nhập ID phòng: ");
-        String roomId = sc.nextLine();
-        Room r = roomManager.searchByID(roomId);
-        if (r == null) {
-            System.out.println("❌ Không tìm thấy phòng!");
+    // ======== HIỂN THỊ BILL ========
+    public void displayAllBills() {
+        if (billList.isEmpty()) {
+            System.out.println(" Chưa có Bill nào.");
             return;
         }
-
-        System.out.print("Nhập số ngày thuê: ");
-        int days = Integer.parseInt(sc.nextLine().trim());
-
-        List<Service> usedServices = new ArrayList<>();
-        System.out.println("Nhập tên dịch vụ sử dụng (gõ 'x' để dừng): ");
-        while (true) {
-            String sName = sc.nextLine();
-            if (sName.equalsIgnoreCase("x")) break;
-            Service s = employeeManager.searchServiceByName(sName);
-            if (s != null) {
-                usedServices.add(s);
-                System.out.println("✅ Đã thêm dịch vụ: " + s.getServiceName());
-            } else {
-                System.out.println("❌ Không tìm thấy dịch vụ này!");
-            }
-        }
-
-        double total = r.getPrice() * days;
-        for (Service s : usedServices) total += s.getPrice();
-
-        Bill bill = new Bill(UUID.randomUUID().toString(), c, r, usedServices, days, total);
-        billList.add(bill);
-
-        System.out.println("✅ Hóa đơn đã được tạo thành công!");
-        bill.printBill();
+        for (Bill b : billList)
+            System.out.println(b);
+    }
+//
+    // ======== TÌM BILL ========
+    public Bill findBillById(int id) {
+        for (Bill b : billList)
+            if (b.getBillID() == id) return b;
+        return null;
     }
 
-    // ====== 2. Tìm hóa đơn ======
-    public void findBillByNameOrRoom() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập tên khách hàng hoặc ID phòng cần tìm: ");
-        String key = sc.nextLine();
-
-        boolean found = false;
-        for (Bill bill : billList) {
-            if (bill.getCustomer().getName().equalsIgnoreCase(key)
-                    || bill.getRoom().getRoomID().equalsIgnoreCase(key)) {
-                bill.printBill();
-                found = true;
-            }
-        }
-        if (!found) System.out.println("❌ Không tìm thấy hóa đơn nào phù hợp!");
+    public List<Bill> findBillsByCustomerName(String name) {
+        List<Bill> result = new ArrayList<>();
+        for (Bill b : billList)
+            if (b.getBooking().getCustomerName().equalsIgnoreCase(name))
+                result.add(b);
+        return result;
     }
 
-    // ====== 3. Lưu thống kê ra file ======
-    public void saveStatisticToFile() {
-        double totalRevenue = billList.stream().mapToDouble(Bill::getTotal).sum();
-
-        Map<String, Integer> roomCount = new HashMap<>();
-        Map<String, Integer> customerCount = new HashMap<>();
-        Map<String, Integer> serviceCount = new HashMap<>();
-
-        for (Bill b : billList) {
-            roomCount.merge(b.getRoom().getRoomId(), 1, Integer::sum);
-            customerCount.merge(b.getCustomer().getName(), 1, Integer::sum);
-            for (Service s : b.getServices()) {
-                serviceCount.merge(s.getServiceName(), 1, Integer::sum);
-            }
-        }
-
-        try (FileWriter w = new FileWriter("HotelData.txt")) {
-            w.write("=== THỐNG KÊ KHÁCH SẠN ===\n");
-            w.write("Tổng doanh thu: " + totalRevenue + " VND\n");
-            w.write("Phòng được đặt nhiều nhất: " + findMost(roomCount) + "\n");
-            w.write("Phòng được đặt ít nhất: " + findLeast(roomCount) + "\n");
-            w.write("Dịch vụ được dùng nhiều nhất: " + findMost(serviceCount) + "\n");
-            w.write("Dịch vụ được dùng ít nhất: " + findLeast(serviceCount) + "\n");
-            w.write("Khách hàng đặt nhiều nhất: " + findMost(customerCount) + "\n");
-            w.write("Khách hàng đặt ít nhất: " + findLeast(customerCount) + "\n");
-            System.out.println("✅ Đã lưu thống kê ra file HotelData.txt!");
-        } catch (IOException e) {
-            System.out.println("❌ Lỗi khi ghi file!");
-        }
+    public List<Bill> findBillsByRoomId(int roomId) {
+        List<Bill> result = new ArrayList<>();
+        for (Bill b : billList)
+            if (b.getBooking().getRoomID() == roomId)
+                result.add(b);
+        return result;
     }
 
-    private String findMost(Map<String, Integer> map) {
-        return map.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse("Không có dữ liệu");
+    // ======== XÓA BILL ========
+    public void removeBill(int billID) {
+        Bill b = findBillById(billID);
+        if (b != null) {
+            billList.remove(b);
+            System.out.println(" Đã xóa Bill.");
+        } else System.out.println(" Không tìm thấy Bill!");
     }
 
-    private String findLeast(Map<String, Integer> map) {
-        return map.entrySet().stream()
-                .min(Map.Entry.comparingByValue())
-                .map(Map.Entry::getKey)
-                .orElse("Không có dữ liệu");
-    }
-    public void readFromFile() {
-
-    }
+    // ======== GHI FILE ========
     public void saveToFile() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+            String header = "ID Bill | Khách | ID phòng | dịch vụ sử dụng | tổng tiền | tên lễ tân | CTKM đã áp dụng";
+            bw.write(header);
+            bw.newLine();
 
+            for (Bill b : billList) {
+                String line = String.format("%03d,%s,%d,%s,%.0f,%s,%s",
+                        b.getBillID(), b.getBooking().getCustomerName(), b.getBooking().getRoomID(),
+                        b.showThisBillServices(), b.getFinalPrice(), b.getEmployeeName(), b.getAppliedPromotion());
+
+                bw.write(line);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("\nLỗi ghi dữ liệu vào file Bill\n");
+        }
+    }
+
+    // ======== ĐỌC FILE ========
+    public void readFromFile() {
+        billList.clear();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            br.readLine();
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] info = line.split(",");
+
+                int billID = Integer.parseInt(info[0].trim());
+                String customerName = info[1].trim();
+
+                Booking booking = bookingManager.searchBookingByCustomerName(customerName);
+
+                double finalPrice = Double.parseDouble(info[info.length-3].trim());
+                String employeeName = info[info.length-2].trim();
+                Promotion promotion = promotionManager.findPromotionByName(info[info.length-1].trim());
+
+                ArrayList<Service> services = new ArrayList<>();
+                for (int i = 3; i < info.length-3; i++) {
+                    Service thisBillService = serviceManager.searchServiceByName(info[i].trim());
+                    if (thisBillService != null) {
+                        services.add(thisBillService);
+                    }
+                }
+
+                Bill newBill = new Bill(booking, services, finalPrice, promotion, employeeName);
+                billList.add(newBill);
+            }
+        } catch (IOException e) {
+            System.out.println("Lỗi khi đọc dữ liệu từ file Bill");
+        }
+    }
+
+    // ======== MENU CONSOLE ========
+    public void showMenu() {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("\n=== QUẢN LÝ BILL ===");
+            System.out.println("1. Hiển thị tất cả Bill");
+            System.out.println("2. Tìm Bill theo ID");
+            System.out.println("3. Tìm Bill theo tên khách");
+            System.out.println("4. Tìm Bill theo ID phòng");
+            System.out.println("5. Xóa Bill");
+            System.out.println("0. Thoát");
+            System.out.print("Chọn: ");
+            choice = sc.nextInt(); sc.nextLine();
+
+            switch(choice) {
+                case 1:
+                    displayAllBills();
+                    break;
+                case 2:
+                    System.out.print("Nhập ID Bill: ");
+                    Bill b = findBillById(Integer.parseInt(sc.nextLine().trim()));
+                    System.out.println(b != null ? b : " Không tìm thấy Bill!");
+                    break;
+                case 3:
+                    System.out.print("Nhập tên khách: ");
+                    List<Bill> list1 = findBillsByCustomerName(sc.nextLine());
+                    if (list1.isEmpty()) System.out.println(" Không tìm thấy Bill!");
+                    else list1.forEach(System.out::println);
+                    break;
+                case 4:
+                    System.out.print("Nhập ID phòng: ");
+                    List<Bill> list2 = findBillsByRoomId(Integer.parseInt(sc.nextLine().trim()));
+                    if (list2.isEmpty()) System.out.println(" Không tìm thấy Bill!");
+                    else list2.forEach(System.out::println);
+                    break;
+                case 5:
+                    System.out.print("Nhập mã Bill muốn xóa: ");
+                    int billID = Integer.parseInt(sc.nextLine().trim());
+                    removeBill(billID);
+                    break;
+                case 0:
+                    saveToFile();
+                    break;
+                default:
+                    System.out.println(" Lựa chọn không hợp lệ!");
+            }
+        } while(choice != 0);
     }
 }

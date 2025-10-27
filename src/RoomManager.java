@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class RoomManager implements FileHandler{
     private final Scanner sc;
-    private final ClearScreen cleaner;
+    private final ClearConsoleScreen cleaner;
     private static ArrayList<Room> roomList;
     private final File f = new File("data/RoomData");
 
-    public RoomManager(Scanner sc, ClearScreen cleaner) {
+    public RoomManager(Scanner sc, ClearConsoleScreen cleaner) {
         this.sc = sc;
         this.cleaner = cleaner;
         roomList = new ArrayList<>();
@@ -127,7 +127,7 @@ public class RoomManager implements FileHandler{
 
     //Thêm phòng
     public void addRoom() {
-        if (Room.roomIsMax()) return;
+        if (roomIsMax()) return;
 
         cleaner.clearScreen();
         System.out.println("Bạn đang thêm phòng:\n");
@@ -153,6 +153,7 @@ public class RoomManager implements FileHandler{
         room.showRoomInfo();
     }
 
+    // Tìm phòng theo ID
     public Room searchByID(String ID) {
         int keyID = Integer.parseInt(ID);
 
@@ -164,6 +165,7 @@ public class RoomManager implements FileHandler{
         return null;
     }
 
+    // Lấy số lượng phòng hiện có
     public static int getRoomListSize() {
         return roomList.size();
     }
@@ -173,6 +175,14 @@ public class RoomManager implements FileHandler{
         for(Room r : roomList) {
             if(roomID == r.getRoomID())
                 return true;
+        }
+        return false;
+    }
+
+    public boolean roomIsMax() {
+        if (RoomManager.getRoomListSize() >= Room.maxOfRooms) {
+            System.out.println("Số lượng phòng đạt tối đa (60 phòng)");
+            return true;
         }
         return false;
     }
@@ -194,9 +204,8 @@ public class RoomManager implements FileHandler{
                 int roomID = Integer.parseInt(info[0]);
                 String roomType = info[1];
                 double price = Double.parseDouble(info[2]);
-                boolean isAvaible = Boolean.parseBoolean(info[3]);
 
-                Room room = new Room(roomID, roomType, price, isAvaible);
+                Room room = new Room(roomID, roomType, price);
                 roomList.add(room);
             }
         } catch (IOException e) {
@@ -207,13 +216,13 @@ public class RoomManager implements FileHandler{
     // Lưu dữ liệu phòng vào file RoomData
     public void saveToFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(f))) {
-            String header = "ID Phòng | Loại phòng | Giá | Đã đặt hay chưa";
+            String header = "ID Phòng | Loại phòng | Giá";
             bw.write(header);
             bw.newLine();
 
             for (Room r : roomList) {
-                String line = String.format("%d,%s,%.0f,%b",
-                        r.getRoomID(), r.getRoomType(), r.getRoomPrice(), r.getIsAvailable());
+                String line = String.format("%d,%s,%.0f",
+                        r.getRoomID(), r.getRoomType(), r.getRoomPrice());
                 bw.write(line);
                 bw.newLine();
             }
